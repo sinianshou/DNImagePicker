@@ -11,4 +11,5 @@
 @interface DNImageFlowViewController : UIViewController
 
 - (instancetype)initWithGroupURL:(NSURL *)assetsGroupURL;
+@property (nonatomic, assign) NSInteger ImageFlowMaxSeletedNumber;
 @end

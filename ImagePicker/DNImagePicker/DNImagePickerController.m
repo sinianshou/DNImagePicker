@@ -65,7 +65,9 @@ ALAssetsFilter * ALAssetsFilterFromDNImagePickerControllerFilterType(DNImagePick
                  *stop = YES;
                  NSURL *assetsGroupURL = [assetsGroup valueForProperty:ALAssetsGroupPropertyURL];
                  DNAlbumTableViewController *albumTableViewController = [[DNAlbumTableViewController alloc] init];
+                 albumTableViewController.ImageFlowMaxSeletedNumber = self.ImageFlowMaxSeletedNumber;
                  DNImageFlowViewController *imageFlowController = [[DNImageFlowViewController alloc] initWithGroupURL:assetsGroupURL];
+                 imageFlowController.ImageFlowMaxSeletedNumber = self.ImageFlowMaxSeletedNumber;
                  [self setViewControllers:@[albumTableViewController,imageFlowController]];
              }
          }
@@ -85,6 +87,7 @@ ALAssetsFilter * ALAssetsFilterFromDNImagePickerControllerFilterType(DNImagePick
 - (void)showAlbumList
 {
     DNAlbumTableViewController *albumTableViewController = [[DNAlbumTableViewController alloc] init];
+    albumTableViewController.ImageFlowMaxSeletedNumber = self.ImageFlowMaxSeletedNumber;
     [self setViewControllers:@[albumTableViewController]];
 }
 
@@ -147,4 +150,11 @@ ALAssetsFilter * ALAssetsFilterFromDNImagePickerControllerFilterType(DNImagePick
 }
 
 
+#pragma mark - Getter
+-(NSInteger)ImageFlowMaxSeletedNumber{
+    if (_ImageFlowMaxSeletedNumber<1) {
+        _ImageFlowMaxSeletedNumber = 9;
+    }
+    return _ImageFlowMaxSeletedNumber;
+}
 @end

@@ -28,6 +28,7 @@
 {
     DNImagePickerController *imagePicker = [[DNImagePickerController alloc] init];
     imagePicker.imagePickerDelegate = self;
+    imagePicker.ImageFlowMaxSeletedNumber = 1;
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 

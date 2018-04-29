@@ -11,6 +11,8 @@
 "preview" = "preview";
 "fullImage" = "Full Image";
 "alertTitle" = "Tips";
-"alertContent" = "Can not select more than 9 photos";
+"alertContent_front" = "Can not select more than ";
+"alertContent_rear" = " photos";
 "alertButton" = "OK";
 "UnAuthorizedTip" = "Allow %@ to access your album in \"Settings\"->\"Privacy\"->\"Photos\"";
+

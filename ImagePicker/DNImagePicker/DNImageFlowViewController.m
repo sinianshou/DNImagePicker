@@ -18,7 +18,7 @@
 #import "NSURL+DNIMagePickerUrlEqual.h"
 
 
-static NSUInteger const kDNImageFlowMaxSeletedNumber = 9;
+//static NSUInteger const kDNImageFlowMaxSeletedNumber = 9;
 
 @interface DNImageFlowViewController () <UICollectionViewDataSource, UICollectionViewDelegate, DNAssetsViewCellDelegate, DNPhotoBrowserDelegate>
 
@@ -225,8 +225,9 @@ static NSString* const dnAssetsViewCellReuseIdentifier = @"DNAssetsViewCell";
     }
     UIBarButtonItem *firstItem = self.toolbarItems.firstObject;
     firstItem.enabled = YES;
-    if (self.selectedAssetsArray.count >= kDNImageFlowMaxSeletedNumber) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"alertTitle", @"DNImagePicker", nil) message:NSLocalizedStringFromTable(@"alertContent", @"DNImagePicker", nil) delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"alertButton", @"DNImagePicker", nil) otherButtonTitles:nil, nil];
+    if (self.selectedAssetsArray.count >= self.ImageFlowMaxSeletedNumber) {
+        NSString * msg = [NSString stringWithFormat:@"%@%ld%@", NSLocalizedStringFromTable(@"alertContent_front", @"DNImagePicker", nil), self.ImageFlowMaxSeletedNumber, NSLocalizedStringFromTable(@"alertContent_rear", @"DNImagePicker", nil)];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTable(@"alertTitle", @"DNImagePicker", nil) message:msg delegate:self cancelButtonTitle:NSLocalizedStringFromTable(@"alertButton", @"DNImagePicker", nil) otherButtonTitles:nil, nil];
         [alert show];
         
         return NO;
@@ -392,5 +393,13 @@ static NSString* const dnAssetsViewCellReuseIdentifier = @"DNAssetsViewCell";
 - (void)photoBrowser:(DNPhotoBrowser *)photoBrowser seleteFullImage:(BOOL)fullImage
 {
     self.isFullImage = fullImage;
+}
+
+#pragma mark - Getter
+-(NSInteger)ImageFlowMaxSeletedNumber{
+    if (_ImageFlowMaxSeletedNumber<1) {
+        _ImageFlowMaxSeletedNumber = 9;
+    }
+    return _ImageFlowMaxSeletedNumber;
 }
 @end

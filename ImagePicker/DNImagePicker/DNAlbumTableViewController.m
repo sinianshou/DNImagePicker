@@ -164,6 +164,7 @@ static NSString* const dnalbumTableViewCellReuseIdentifier = @"dnalbumTableViewC
     ALAssetsGroup *group = self.assetsGroups[indexPath.row];
     NSURL *url = [group valueForProperty:ALAssetsGroupPropertyURL];
     DNImageFlowViewController *imageFlowViewController = [[DNImageFlowViewController alloc] initWithGroupURL:url];
+    imageFlowViewController.ImageFlowMaxSeletedNumber = self.ImageFlowMaxSeletedNumber;
     [self.navigationController pushViewController:imageFlowViewController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -222,5 +223,13 @@ static NSString* const dnalbumTableViewCellReuseIdentifier = @"dnalbumTableViewC
              }
          }];
     }
+}
+
+#pragma mark - Getter
+-(NSInteger)ImageFlowMaxSeletedNumber{
+    if (_ImageFlowMaxSeletedNumber<1) {
+        _ImageFlowMaxSeletedNumber = 9;
+    }
+    return _ImageFlowMaxSeletedNumber;
 }
 @end
